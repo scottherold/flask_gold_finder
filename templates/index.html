@@ -1,0 +1,64 @@
+<!DOCTTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ninja Gold</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>.scroll {overflow:scroll;}</style>
+    </head>
+    <body>
+        <div class="container-fluid bg-white">
+            <nav class="navbar navbar-light bg-dark">
+                <a class="navbar-brand text-white" href="#">Ninja Gold</a>
+            </nav>
+            <div class="jumbotron jumbotron-fluid bg-secondary">
+                <div class="container">
+                    <p class="lead mr-2 mb-4 d-inline-block">Your Gold:</p>
+                    <input class="form-control mb-4 d-inline-block w-25" type="text" placeholder="{{ gold }}" readonly>
+                    <div class="row align-items-center mb-4">
+                        <div class="col-md mt-2 mr-2 ml-2 bg-light border rounded text-center">
+                            <h3>Farm</h3>
+                            <p>(earns 10-20 gold)</p>
+                            <form action='/process_money' method='post'>
+                                <input type="hidden" name="building" value="farm" />
+                                <input class="btn btn-sm btn-warning" type="submit" value="Find Gold!">
+                            </form>
+                        </div>
+                        <div class="col-md mt-2 mr-2 ml-2 bg-light border rounded text-center">
+                            <h3>Cave</h3>
+                            <p>(earns 5-10 gold)</p>
+                            <form action='/process_money' method='post'>
+                                <input type="hidden" name="building" value="cave" />
+                                <input class="btn btn-sm btn-warning" type="submit" value="Find Gold!" />
+                            </form>
+                        </div>
+                        <div class="col-md mt-2 mr-2 ml-2 bg-light border rounded text-center">
+                            <h3>House</h3>
+                            <p>(earns 2-5 gold)</p>
+                            <form action='/process_money' method='post'>
+                                <input type="hidden" name="building" value="house" />
+                                <input class="btn btn-sm btn-warning" type="submit" value="Find Gold!" />
+                            </form>
+                        </div>
+                        <div class="col-md mt-2 mr-2 ml-2 bg-light border rounded text-center">
+                            <h3>Casino</h3>
+                            <p>(earns/takes 0-50 gold)</p>
+                            <form action='/process_money' method='post'>
+                                <input type="hidden" name="building" value="casino" />
+                                <input class="btn btn-sm btn-warning" type="submit" value="Find Gold!" />
+                            </form>
+                        </div>
+                    </div>
+                    <p class="lead mr-2 mb-1">Activities:</p>
+                    <div class="row">
+                        <div class="col bg-light border rounded h-25 scroll">
+                            {% for activity in session['activities'] %}
+                                <p class="{{ activity.color }}">{{ activity.content }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
